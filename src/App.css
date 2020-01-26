@@ -1,38 +1,122 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css?family=Didact+Gothic&display=swap");
+
+
+* {
+    font-family: 'Didact Gothic', sans-serif;
+    font-size: 20px;
+}
+.back {
+    background-color: #d6f5ff;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.main-box {
+    box-shadow: 0px 13px 40px -13px rgba(0,0,0,0.75);
+    height: 90vh;
+    background: transparent;
+    width: 60%;
+    margin: 0 auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.info {
+    height: 90vh;
+    background-color: #33ccff;
+}
+
+.wow {
+    height: 90vh;
+    background-color: transparent;
+}
+
+input[type="text"] {
+    text-align: center;
+    background-color: transparent;
+    border: 0;
+    outline: none;
+    border-bottom: solid 1px #000;
+    width: 75%;
+    padding-bottom: 4px;
+    color: #000 !important;
+    font-weight: lighter;
+    margin-bottom: 30px;
+    margin-right: 20px;
+    font-size: 20px;
   }
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px #33ccff inset;
+    -webkit-text-fill-color: #000000
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+button {
+    border: 3px solid #33ccff;
+    padding: 8px 20px;
+    margin: 0 2px;
+    border-radius: 20px;
+    font-weight: lighter;
+    letter-spacing: 1px;
+    font-size: 15px;
+    cursor: pointer;
+    background-color: #d6f5ff;
+    color: #000;
+    font-weight: 100;
   }
-  to {
-    transform: rotate(360deg);
+  
+button:hover {
+      color: #d6f5ff;
+      border-color: #d6f5ff;
+      background-color: #33ccff;
   }
+  
+button:active {
+    outline: none;
+  }
+
+.center {
+    text-align: center;
 }
+
+.title {
+    font-size: 69px;
+}
+
+.white {
+    color: #fff;
+    font-size: 69px;
+}
+
+.pad {
+    padding-left: 18px;
+}
+
+.result {
+    width: 60%;
+    font-weight: 200;
+    letter-spacing: 2px;
+  }
+  
+.result__key {
+    color: #33ccff;
+    border-bottom: solid 1px rgba(0,0,0,0.3);
+    padding: 20px 0 20px 0;
+    font-weight: 400;
+    font-size: 20px;
+  }
+  
+.result__key:last-child {
+    border: 0;
+  }
+  
+.result__value {
+    color: #000;
+    font-weight: 200;
+  }
+  
+.result__error {
+    color: #33ccff;
+    font-weight: 200;
+    
+  }
