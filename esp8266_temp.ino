@@ -2,18 +2,12 @@
 #include <PubSubClient.h>
 #include <ESP8266WiFi.h>
 #include <SPI.h>
-#include <DHT.h>
 
 #include <math.h>
 
 const int B = 4275;               // B value of the thermistor
 const int R0 = 100000;            // R0 = 100k
 const int pinTempSensor = A0;     // Grove - Temperature Sensor connect to A0
-
-#define DHTPIN 2     // what pin we're connected to
-#define DHTTYPE DHT22   // DHT 22  (AM2302)
-DHT dht(DHTPIN, DHTTYPE);
-
 int16_t temp;
 
 // max received message length
@@ -25,7 +19,7 @@ const char* password = "rpiconnection";
 
 
 //MQTT configuration
-const char *serverHostname = "pop-os";
+const char *serverHostname = "test.mosquitto.org";
 const char *topic = "test/temp";
 
 WiFiClient espClient;
@@ -35,7 +29,6 @@ void setup() {
   // put your setup code here, to run once:
 
   Serial.begin(115200);
-  dht.begin();
 
   connectWifi();
   client.setServer(serverHostname, 1883);
@@ -52,18 +45,14 @@ void loop() {
   R = R0*R;
 
   float temperature = 1.0/(log(R/R0)/B+1/298.15)-273.15;
-  float t = dht.readTemperature();
   char result[256];
-
-  String num = String(t, 2);  
-   String num2 = String(temperature, 2);  
-  //String head = String("The temperature is ");  
-  String sresult = String(num2);  // concatenating two strings
+ 
+  String num2 = String(temperature, 2);  
   
-  sresult.toCharArray(result, 30);
+  num2.toCharArray(result, 30);
   client.publish(topic, result);
   client.loop();
-  delay(2000);
+  delay(1000);
 }
 
 void connectWifi() {
@@ -89,13 +78,12 @@ void connectMQTT() {
     if (client.connect(clientId.c_str())) {
       Serial.println("MQTT connected");
       // Once connected, publish an announcement...
-      client.publish(topic, "hello from ESP8266");
       // ... and resubscribe
       // client.subscribe(topic);
     } else {
       Serial.printf("MQTT failed, state %s, retrying...\n", client.state());
       // Wait before retrying
-      delay(2500);
+      delay(2000);
     }
   }
 }
